@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Kishan A. Panchal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9f9;
+      color: #222;
+    }
+
+    /* Header */
+    header {
+      background: #f3efe8;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header a {
+      text-decoration: none;
+      color: #000;
+      font-weight: 600;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: #fff;
+    }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    /* Filter Buttons */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .filters button {
+      padding: 10px 20px;
+      border: 1px solid #333;
+      border-radius: 25px;
+      background: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .filters button.active,
+    .filters button:hover {
+      background: #4CAF50;
+      color: #fff;
+      border-color: #4CAF50;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .project-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .project-card h3 {
+      margin: 10px 0;
+      font-size: 20px;
+    }
+
+    .project-card p {
+      font-size: 15px;
+      color: #555;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 1000px;   
+      width: 95%;          
+      max-height: 90vh;    
+      overflow-y: auto;    
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-content img {
+      width: 100%;
+      max-height: 350px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+  /* Gallery controls inside detail modal */
+  .gallery-wrap { position: relative; }
+  .gallery-wrap img#detail-img { max-height: 420px; width: 100%; object-fit: cover; border-radius: 10px; }
+  .gallery-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #fff; border-radius: 50%; border: 1px solid #ccc; width: 36px; height: 36px; cursor: pointer; display: none; }
+  .gallery-btn.left { left: 10px; }
+  .gallery-btn.right { right: 10px; }
+  #gallery-counter { margin-top: 8px; font-size: 14px; color: #555; }
+
+    .close, .back {
+      position: absolute;
+      top: 10px;
+      font-size: 22px;
+      cursor: pointer;
+      background: #eee;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+    }
+
+    .close { right: 15px; }
+    .back { left: 15px; }
+
+    .model-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .model-card {
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .model-card:hover {
+      background: #eee;
+    }
+
+    .model-card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      background: #f3efe8;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="about.html">⬅ Back to Home</a>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>My Projects</h1>
+    <p>Explore my 2D designs, 3D models, and engineering projects.</p>
+  </section>
+
+  <!-- Filters -->
+  <div class="filters">
+    <button class="active" onclick="filterProjects('all')">All</button>
+    <button onclick="filterProjects('2d')">2D Models</button>
+    <button onclick="filterProjects('3d')">3D Models</button>
+    <button onclick="filterProjects('cad')">CAD Designs</button>
+  </div>
+
+  <!-- Projects Grid -->
+  <div class="projects-grid">
+    <div class="project-card" data-category="2d" onclick="openModelList('2D Models', '2d')">
+      <img src="https://via.placeholder.com/400x250" alt="2D Design">
+      <h3>2D Models Design</h3>
+      <p>AutoCAD drafting and technical drawing.</p>
+    </div>
+
+    <div class="project-card" data-category="3d" onclick="openModelList('3D Models', '3d')">
+      <img src="https://via.placeholder.com/400x250" alt="3D Model">
+      <h3>3D Models Design</h3>
+      <p>SolidWorks assembly and simulation.</p>
+    </div>
+
+    <div class="project-card" data-category="cad" onclick="openModelList('CAD Designs', 'cad')">
+      <img src="https://via.placeholder.com/400x250" alt="CAD">
+      <h3>CAD Project</h3>
+      <p>Solid Edge product development design.</p>
+    </div>
+  </div>
+
+  <!-- Modal 1: List of Models -->
+  <div class="modal" id="list-modal">
+    <div class="modal-content">
+      <span class="back" onclick="closeModal('list-modal')">⬅</span>
+      <span class="close" onclick="closeModal('list-modal')">&times;</span>
+      <h2 id="list-title"></h2>
+      <div class="model-list" id="model-list"></div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Detailed Model -->
+  <div class="modal" id="detail-modal">
+    <div class="modal-content">
+      <span class="back" onclick="backToList()">⬅</span>
+      <span class="close" onclick="closeModal('detail-modal')">&times;</span>
+      <h2 id="detail-title"></h2>
+      <div class="gallery-wrap">
+        <button id="prev-btn" class="gallery-btn left">◀</button>
+        <img id="detail-img" src="" alt="">
+        <button id="next-btn" class="gallery-btn right">▶</button>
+      </div>
+      <div id="gallery-counter"></div>
+      <p id="detail-desc"></p>
+      <h3>Parts Information</h3>
+      <ul id="detail-parts"></ul>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Kishan A. Panchal. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const projectModels = {
+      "2d": [
+        {title:"2D Model 1", img:"/images/m1.jpeg", desc:"This is 2D model 1 description.", parts:["Part A","Part B","Part C"]},
+        {title:"2D Model 2", img:"/images/m2.jpeg", desc:"This is 2D model 2 description.", parts:["Part D","Part E"]},
+        {title:"2D Model 3", img:"/images/m3.jpeg", desc:"This is 2D model 3 description.", parts:["Part F","Part G","Part H"]},
+        {title:"2D Model 4", img:"/images/m4.jpeg", desc:"This is 2D model 4 description.", parts:["Part X","Part Y"]},
+        {title:"2D Model 5", gallery:["/images/ass1.jpeg","/images/ass2.jpeg","/images/ass3.jpeg","/images/ass4.jpeg","/images/ass5.jpeg","/images/ass6.jpeg"], desc:"A 6-image 2D model gallery.", parts:["Sheet 1","Sheet 2"]}
+      ],
+      "3d": [
+        {title:"3D Model 1", img:"https://via.placeholder.com/300x200", desc:"This is 3D model 1 description.", parts:["Part 1","Part 2"]},
+        {title:"3D Model 2", img:"https://via.placeholder.com/300x200", desc:"This is 3D model 2 description.", parts:["Part A","Part B"]}
+      ],
+      "cad": [
+        {title:"CAD Model 1", img:"https://via.placeholder.com/300x200", desc:"This is CAD model 1 description.", parts:["Part CAD1","Part CAD2"]}
+      ]
+    };
+
+    function openModelList(title, category) {
+      document.getElementById('list-title').innerText = title;
+      const container = document.getElementById('model-list');
+      container.innerHTML = "";
+      projectModels[category].forEach(model => {
+        const div = document.createElement('div');
+        div.className = "model-card";
+        div.innerHTML = `<img src="${model.img}" alt="${model.title}"><h4>${model.title}</h4>`;
+        div.onclick = () => openDetail(model);
+        container.appendChild(div);
+      });
+      document.getElementById('list-modal').style.display = 'flex';
+    }
+
+    let currentGallery = null;
+    let currentIndex = 0;
+
+    function showGalleryImage(idx) {
+      if (!currentGallery) return;
+      const imgEl = document.getElementById('detail-img');
+      imgEl.src = currentGallery[idx];
+      document.getElementById('gallery-counter').innerText = `${idx+1} / ${currentGallery.length}`;
+    }
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      if (!currentGallery) return;
+      currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+      showGalleryImage(currentIndex);
+    });
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      if (!currentGallery) return;
+      currentIndex = (currentIndex + 1) % currentGallery.length;
+      showGalleryImage(currentIndex);
+    });
+
+    function openDetail(model) {
+      document.getElementById('list-modal').style.display = 'none';
+      document.getElementById('detail-title').innerText = model.title;
+      document.getElementById('detail-desc').innerText = model.desc || '';
+      const partsUl = document.getElementById('detail-parts');
+      partsUl.innerHTML = "";
+      (model.parts || []).forEach(p => {
+        const li = document.createElement('li');
+        li.innerText = p;
+        partsUl.appendChild(li);
+      });
+
+      // support either single img or gallery array
+      if (model.gallery && Array.isArray(model.gallery) && model.gallery.length) {
+        currentGallery = model.gallery;
+        currentIndex = 0;
+        showGalleryImage(currentIndex);
+        document.getElementById('prev-btn').style.display = 'block';
+        document.getElementById('next-btn').style.display = 'block';
+      } else if (model.img) {
+        currentGallery = [model.img];
+        currentIndex = 0;
+        showGalleryImage(0);
+        document.getElementById('prev-btn').style.display = 'none';
+        document.getElementById('next-btn').style.display = 'none';
+      } else {
+        currentGallery = null;
+        document.getElementById('detail-img').src = '';
+        document.getElementById('gallery-counter').innerText = '';
+        document.getElementById('prev-btn').style.display = 'none';
+        document.getElementById('next-btn').style.display = 'none';
+      }
+
+      document.getElementById('detail-modal').style.display = 'flex';
+    }
+
+    function backToList() {
+      document.getElementById('detail-modal').style.display = 'none';
+      document.getElementById('list-modal').style.display = 'flex';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.querySelectorAll('.filters button').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

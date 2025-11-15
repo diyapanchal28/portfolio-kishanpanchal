@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kishan A. Panchal - Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('ME');
+      background-color: #f9f9f9;
+      background-attachment: fixed;
+      background-size: cover;
+      color: #222;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 20px;
+      background: #f3efe8;
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 20px;
+      color: #000;
+    }
+
+    .logo img {
+      width: 30px;
+      height: 30px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #333;
+      transition: color 0.3s;
+    }
+
+    nav ul li:last-child a:hover {
+      color: #E63946;
+    }
+
+    /* Hamburger Menu Button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      border-radius: 2px;
+    }
+
+    /* Divider line */
+    .divider {
+      margin-top: 80px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 20px;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 25px;
+      padding: 40px 25px;
+      text-align: center;
+      max-width: 700px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-card h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .hero-card h2 {
+      font-size: 22px;
+      font-weight: 500;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .hero-card p {
+      font-size: 18px;
+      color: #555;
+      margin: 0 auto 30px;
+    }
+
+    .hero-card button {
+      padding: 14px 30px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 40px;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hero-card button:hover {
+      background: #388E3C;
+      transform: scale(1.05);
+    }
+
+    /* Section Title */
+    section h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #000;
+      position: relative;
+      display: inline-block;
+    }
+
+    section h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #4CAF50;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    .about {
+      padding: 80px 20px;
+      background: #ffffffd9;
+      text-align: center;
+    }
+
+    .about p {
+      font-size: 17px;
+      color: #555;
+      line-height: 1.8;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    /* Skills Section */
+    .skills {
+      padding: 80px 20px;
+      background: #fefefe;
+      text-align: center;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .skill-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .skill-card img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+    }
+
+    .skill-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* Projects Section */
+    .projects {
+      padding: 80px 20px;
+      background: #ffffffd9;
+      text-align: center;
+    }
+
+    .project-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      max-width: 800px;
+      margin: 0 auto;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .project-card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 80px 20px;
+      background: #fefefe;
+      text-align: center;
+    }
+
+    .contact-box {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      max-width: 700px;
+      margin: 30px auto 30px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    .contact-box p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    .contact-box strong {
+      color: #000;
+    }
+
+    .social-links {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      padding: 8px 16px;
+      border: 1px solid #333;
+      border-radius: 20px;
+      text-decoration: none;
+      color: #333;
+      font-size: 15px;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: #4CAF50;
+      color: white;
+      border-color: #4CAF50;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      text-align: left;
+    }
+
+    .contact-form label {
+      font-weight: 600;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 96%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .contact-form button {
+      background: #4CAF50;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #388E3C;
+    }
+
+    /* Footer */
+    footer {
+      background: #f3efe8;
+      color: #000000;
+      padding: 20px 15px;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    /* ----------- Responsive ----------- */
+    @media (max-width: 768px) {
+      nav ul {
+        position: absolute;
+        top: 65px;
+        right: 20px;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.95);
+        width: 200px;
+        padding: 15px;
+        border-radius: 10px;
+        display: none;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo">
+        Kishan A. Panchal
+      </div>
+
+      <!-- Hamburger Menu for Mobile -->
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <nav>
+        <ul id="menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Divider line -->
+  <div class="divider"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-card">
+      <h1>Hi, I'm Kishan Panchal</h1>
+      <h2>Mechanical Engineer</h2>
+      <p>
+        I am passionate about designing, analyzing, and creating mechanical systems with innovative solutions. 
+        Welcome to my portfolio website where I showcase my projects and achievements.
+      </p>
+      <button onclick="scrollToWork()">View My Work</button>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>
+      Hello! I'm Kishan A. Panchal, a dedicated Mechanical Engineer with a strong passion for problem-solving and innovation. 
+      I specialize in designing and analyzing mechanical systems, bringing creative ideas to life with practical solutions. 
+      My focus lies in CAD design, prototyping, and engineering analysis, where I enjoy applying technical knowledge to 
+      real-world challenges.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills">
+    <h2>My Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <img src="https://img.icons8.com/color/96/000000/autocad.png" alt="AutoCAD">
+        <h3>AutoCAD</h3>
+        <p>Proficient in creating precise 2D drawings and technical drafting for engineering projects.</p>
+      </div>
+      <div class="skill-card">
+        <img src="https://img.icons8.com/color/96/000000/solidworks.png" alt="SolidWorks">
+        <h3>SolidWorks</h3>
+        <p>Experienced in 3D modeling, assemblies, and simulation for mechanical design and analysis.</p>
+      </div>
+      <div class="skill-card">
+        <img src="https://img.icons8.com/color/96/000000/gear.png" alt="Solid Edge">
+        <h3>Solid Edge</h3>
+        <p>Skilled in synchronous technology and advanced mechanical design for product development.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <div class="project-card" onclick="window.location.href='project.html'">
+      <h3>My Project Portfolio</h3>
+      <p>Click here to explore my mechanical engineering projects, CAD designs, and case studies.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <p>Tell me about your goals and constraints. I respond within 1–2 business days.</p>
+    
+    <div class="contact-box">
+      <p><strong>Email:</strong> hello@kishan.com</p>
+      <p><strong>Location:</strong> Ahmedabad, India · Available for remote/freelance</p>
+      
+      <div class="social-links">
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="#">Upwork</a>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <form action="#" method="post">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Kishan A. Panchal. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function scrollToWork() {
+      document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>
+
